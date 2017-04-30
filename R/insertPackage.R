@@ -48,6 +48,7 @@ insertPackage <- function(file,
                           repodir=getOption("dratRepo", "~/git/drat"),
                           commit=FALSE,
                           pullfirst=FALSE,
+                          branch="gh-pages",
                           action=c("none", "archive", "prune"),
                           ...) {
 
@@ -74,11 +75,11 @@ insertPackage <- function(file,
     if (commit && haspkg) {  
         repo <- git2r::repository(repodir)
         if (isTRUE(pullfirst)) git2r::pull(repo)
-        git2r::checkout(repo, "gh-pages")
+        git2r::checkout(repo, branch)
     } else if (commit && hascmd) {
         setwd(repodir)
         if (isTRUE(pullfirst)) system("git pull")
-        system("git checkout gh-pages")
+        system(paste0("git checkout ", branch)
         setwd(curwd)
     }
 
