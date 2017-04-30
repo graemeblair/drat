@@ -79,7 +79,7 @@ insertPackage <- function(file,
     } else if (commit && hascmd) {
         setwd(repodir)
         if (isTRUE(pullfirst)) system("git pull")
-        system(paste0("git checkout ", branch)
+        system(paste0("git checkout ", branch))
         setwd(curwd)
     }
 
